@@ -10,24 +10,26 @@ public static String toString(int x) {
 
     return zeros + str;
     */
-    
- 
+
+
     StringBuilder value = new StringBuilder();
     if (x < 0) x += 256;
-    
+
     int i = 1 << 7;
     while (i >= 1) {
         if (x >= i) {
             value.append("1");
             x -= i;
-        } else {
+        }
+        else {
             value.append("0");
         }
-        i /= 2;
+        i >>>= 1;
     }
     return value.toString();
 }
 
+/*
 public static int fromString(String text) {
     int value = 1;
     int result = 0;
@@ -38,14 +40,24 @@ public static int fromString(String text) {
             continue;
         }
         if (i + 1 == chars.length) {
-            value = -value;
-            result += value;
-            continue;
+            result -= value;
+            return result;
         }
         result += value;
         value *= 2;
     }
-
+    return result;
+}
+*/
+public static int fromString(String text) {
+    int value = 1;
+    int result = 0;
+    char[] chars = text.toCharArray();
+    for (int i = 0; i < chars.length - 1; i++) {
+        if (chars[chars.length - 1 - i] == '1') result += value;
+        value *= 2;
+    }
+    if (chars[chars.length - 1] == '1') result -= value;
     return result;
 }
 }
