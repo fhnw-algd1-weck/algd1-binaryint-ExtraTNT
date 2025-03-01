@@ -21,7 +21,7 @@ public static int fromString(String text) {
         if (chars[chars.length - 1 - i] == '1') result += value;
         value *= 2;
     }
-    if (chars[chars.length - 1] == '1') result -= value;
+    if (chars[0] == '1') result -= value;
     return result;
 }
 }
