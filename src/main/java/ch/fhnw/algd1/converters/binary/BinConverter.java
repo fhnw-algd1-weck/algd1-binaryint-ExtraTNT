@@ -19,7 +19,7 @@ public static int fromString(String text) {
     char[] chars = text.toCharArray();
     for (int i = 0; i < chars.length - 1; i++) {
         if (chars[chars.length - 1 - i] == '1') result += value;
-        value *= 2;
+        value <<= 1;
     }
     if (chars[0] == '1') result -= value;
     return result;
