@@ -1,15 +1,34 @@
 package ch.fhnw.algd1.converters.binary;
 
 public class BinConverter {
-	public static String toString(int x) {
-		// TODO expect x to be in range [-128, 127], return string with 8 binary
-		// digits representing x in 2-complement
-		return "00000000";
-	}
+public static String toString(int x) {
+    StringBuilder value = new StringBuilder();
+   // if (x < 0) x += 256;
 
-	public static int fromString(String text) {
-		// TODO expect text to contain 8 binary digits, parse to int value in
-		// 2-complement
-		return 0;
-	}
+    int i = 1 << 7;
+    while (i >= 1) {
+        //value.append((x & i) / i);
+        value.append((x & i) != 0 ? '1' : '0');
+        i >>>= 1;
+    }
+    return value.toString();
+}
+public static int fromString(String text) {
+    //int value = 1;
+    int result = 0;
+    char[] chars = text.toCharArray();
+    /*
+    for (int i = 0; i < chars.length - 1; i++) {
+        if (chars[chars.length - 1 - i] == '1') result += value;
+        value <<= 1;
+    }
+    if (chars[0] == '1') result -= value;
+    */
+
+    for (char aChar : chars) {
+        result = (result << 1) | (aChar == '0' ? 0 : 1);
+    }
+     
+    return (byte) result;
+}
 }
