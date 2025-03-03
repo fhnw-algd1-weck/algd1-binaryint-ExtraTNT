@@ -3,7 +3,7 @@ package ch.fhnw.algd1.converters.binary;
 public class BinConverter {
 public static String toString(int x) {
     StringBuilder value = new StringBuilder();
-    if (x < 0) x += 256;
+   // if (x < 0) x += 256;
 
     int i = 1 << 7;
     while (i >= 1) {
