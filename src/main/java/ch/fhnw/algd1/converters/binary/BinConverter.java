@@ -14,14 +14,21 @@ public static String toString(int x) {
     return value.toString();
 }
 public static int fromString(String text) {
-    int value = 1;
+    //int value = 1;
     int result = 0;
     char[] chars = text.toCharArray();
+    /*
     for (int i = 0; i < chars.length - 1; i++) {
         if (chars[chars.length - 1 - i] == '1') result += value;
         value <<= 1;
     }
     if (chars[0] == '1') result -= value;
-    return result;
+    */
+
+    for (char aChar : chars) {
+        result = (result << 1) | (aChar == '0' ? 0 : 1);
+    }
+     
+    return (byte) result;
 }
 }
